@@ -16,9 +16,27 @@ class Cabine:
     def lista_cabine(self, lista_cabine):
         self.__lista_cabine = lista_cabine
 
+    @property
+    def id_cab(self):
+        return self.__id_cab
+
+    @property
+    def n_letti(self):
+        return self.__n_letti
+
+    @property
+    def ponte(self):
+        return self.__ponte
+
+    @property
+    def prezzo(self):
+        return self.__prezzo
+
+
+
     def __str__(self):
         return (f"{self.__id_cab},  {self.__n_letti},{self.__ponte},"
-                f" {self.__prezzo})")
+                f" {self.__prezzo}")
 
 class Cabine_animali(Cabine):
     def __init__(self, n_letti, ponte, prezzo, id_cab,n_animali):
@@ -26,7 +44,15 @@ class Cabine_animali(Cabine):
         self.__n_animali = n_animali
 
 
+    def __str__(self):
+        return (f"{self.id_cab},  {self.n_letti},  {self.ponte}, {self.prezzo}, {self.__n_animali}")
+
+
 class Cabine_deluxe(Cabine):
     def __init__(self, id_cab, n_letti, ponte, prezzo, deluxe,):
         super().__init__(id_cab,n_letti, ponte, prezzo)
         self.__deluxe = deluxe
+
+
+    def __str__(self):
+        return (f"{self.id_cab}, {self.n_letti},  {self.ponte}, {self.prezzo}, {self.__deluxe}")

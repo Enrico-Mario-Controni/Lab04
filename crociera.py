@@ -1,3 +1,7 @@
+from cabine import *
+from passeggeri import Passeggeri
+
+
 class Crociera:
     def __init__(self, nome):
         """Inizializza gli attributi e le strutture dati"""
@@ -21,24 +25,37 @@ class Crociera:
         """Carica i dati (cabine e passeggeri) dal file"""
         # TODO
 
-        from cabine import Cabine
-        from passeggeri import Passeggeri
-
         import csv
         try:
             with open(file_path, newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     if len(row[0])>3 :
-                        cabina= Cabine(
-                        id_cab = row[0],
-                        n_letti = row[1],
-                        ponte = row[2],
-                        prezzo = row[3],
-                        deluxe= row[4] if len(row) > 4 and row[4].isdigit() else "null",
-                        n_animali=row[4] if len(row) > 4 and not row[4].isdigit() else "null")
+                        if len(row)> 4:
+                            if row[4].isdigit():
+                                cabina= Cabine_deluxe(
+                                id_cab = row[0],
+                                n_letti = row[1],
+                                ponte = row[2],
+                                prezzo = int(row[3]),
+                                deluxe=row[4])
+                                self.lista_cabine.append(cabina)
+                            else :
+                                cabina=Cabine_animali(
+                                id_cab=row[0],
+                                n_letti=row[1],
+                                ponte=row[2],
+                                prezzo=int(row[3]),
+                                n_animali=row[4])
+                                self.lista_clienti.append(cabina)
 
-                        self.lista_cabine.append(cabina)
+                        else:
+                            cabina= Cabine(
+                                id_cab=row[0],
+                                n_letti=row[1],
+                                ponte=row[2],
+                                prezzo=row[3])
+                            self.lista_cabine.append(cabina)
 
                     else:
                         cliente= Passeggeri(
@@ -46,7 +63,6 @@ class Crociera:
                         nome_cliente=row[1],
                         cognome_cliente=row[2])
                         self.lista_clienti.append(cliente)
-
 
 
         except FileNotFoundError:
