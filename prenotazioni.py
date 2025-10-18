@@ -1,3 +1,4 @@
+
 class Prenotazioni:
     def __init__(self, id_cliente, id_cabine, disponibilita ):
         self.__id_cabine = id_cabine

@@ -37,6 +37,9 @@ class Cabine:
     def prezzo(self, prezzo):
         self.__prezzo = prezzo
 
+    def __lt__(self, other):
+        return self.prezzo < other.prezzo
+
 
     def __str__(self):
         return (f"{self.__id_cab},  {self.__n_letti},{self.__ponte},"
