@@ -131,7 +131,7 @@ class Crociera:
     def cabine_ordinate_per_prezzo(self):
         """Restituisce la lista ordinata delle cabine in base al prezzo"""
         # TODO
-        self.lista_cabine.sort(key=lambda x: x.prezzo)
+        self.lista_cabine.sort()
         return self.lista_cabine
 
     def __str__(self):
